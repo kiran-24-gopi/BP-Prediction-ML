@@ -10,23 +10,23 @@ import numpy as np
 app = Flask(__name__)
 
 # Define filenames for saving cleaned components
-final_model_filename = 'final_random_forest_model.joblib'
-final_scaler_filename = 'final_standard_scaler.joblib'
-final_label_encoder_filename = 'final_label_encoder.joblib'
+model_filename = 'random_forest_model.joblib'
+scaler_filename = 'standard_scaler.joblib'
+label_encoder_filename = 'label_encoder.joblib'
 feature_names_filename = 'feature_names.json'
 
 # Save the cleaned model
-joblib.dump(model_cleaned, final_model_filename)
-print(f"Final model saved to {final_model_filename}")
+joblib.dump(model_cleaned, model_filename)
+print(f"Final model saved to {model_filename}")
 
 # Save the cleaned scaler
-joblib.dump(scaler_cleaned, final_scaler_filename)
-print(f"Final scaler saved to {final_scaler_filename}")
+joblib.dump(scaler_cleaned, scaler_filename)
+print(f"Final scaler saved to {scaler_filename}")
 
 # Save the label encoder
 # Note: The original 'le' object is still valid as categories haven't changed
-joblib.dump(le, final_label_encoder_filename)
-print(f"Final label encoder saved to {final_label_encoder_filename}")
+joblib.dump(le, label_encoder_filename)
+print(f"Final label encoder saved to {label_encoder_filename}")
 
 # Save the list of feature names used for training
 feature_names = X_train_scaled_cleaned.columns.tolist()
@@ -37,9 +37,9 @@ print(f"Feature names saved to {feature_names_filename}")
 
 # Load the model, scaler, label encoder, and feature names
 try:
-    model = joblib.load('final_random_forest_model.joblib')
-    scaler = joblib.load('final_standard_scaler.joblib')
-    label_encoder = joblib.load('final_label_encoder.joblib')
+    model = joblib.load('random_forest_model.joblib')
+    scaler = joblib.load('standard_scaler.joblib')
+    label_encoder = joblib.load('label_encoder.joblib')
     with open('feature_names.json', 'r') as f:
         feature_names = json.load(f)
     print("All components loaded successfully.")
