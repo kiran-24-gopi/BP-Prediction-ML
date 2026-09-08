@@ -1,0 +1,7 @@
+joblib
+json
+Flask
+request
+jsonify
+pandas
+numpy
